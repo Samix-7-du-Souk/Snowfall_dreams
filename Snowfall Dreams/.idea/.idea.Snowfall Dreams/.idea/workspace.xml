@@ -28,10 +28,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/MovePlayer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1onG0UJtDdqAofOMgUCVCecFnP0" />
@@ -87,7 +91,7 @@
       <workItem from="1613914728414" duration="1282000" />
       <workItem from="1615318186018" duration="57000" />
       <workItem from="1616234369093" duration="68000" />
-      <workItem from="1627050939686" duration="3346000" />
+      <workItem from="1627050939686" duration="6618000" />
     </task>
     <servers />
   </component>
