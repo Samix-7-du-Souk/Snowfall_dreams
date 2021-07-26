@@ -21,8 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="028566c6-f2b0-43ca-9090-0fafb67dba7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Snowfall Dreams/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Snowfall Dreams/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +38,8 @@
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/MovePlayer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1onG0UJtDdqAofOMgUCVCecFnP0" />
@@ -96,7 +96,7 @@
       <workItem from="1615318186018" duration="57000" />
       <workItem from="1616234369093" duration="68000" />
       <workItem from="1627050939686" duration="6618000" />
-      <workItem from="1627310044994" duration="2364000" />
+      <workItem from="1627310044994" duration="6598000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,8 +18,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        // Move as long as you press the button
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
+        // Check if is on ground and pressed the jump button
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             isJumping = true;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Check if is on ground thank to an OverlapCircle
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
         
         MovePlayer(horizontalMovement);
@@ -39,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
 
-        if (isJumping == true)
+        if (isJumping)
         {
             rb.AddForce(new Vector2(0f, jumpForce));
             isJumping = false;
@@ -48,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        // Draw an gizmo to represent the OverlapCircle
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
