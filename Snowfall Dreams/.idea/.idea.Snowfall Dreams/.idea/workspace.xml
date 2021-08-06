@@ -20,12 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="028566c6-f2b0-43ca-9090-0fafb67dba7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Snowfall Dreams/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Snowfall Dreams/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Snowfall Dreams/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Snowfall Dreams/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Snowfall Dreams/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Snowfall Dreams/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene/LightingData.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene/LightingData.asset.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +34,16 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Assets/Scripts/MovePlayer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CameraFollow.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1onG0UJtDdqAofOMgUCVCecFnP0" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -44,6 +54,7 @@
   <component name="PropertiesComponent">
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -59,6 +70,7 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -68,6 +80,7 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -85,6 +98,10 @@
       <workItem from="1613914728414" duration="1282000" />
       <workItem from="1615318186018" duration="57000" />
       <workItem from="1616234369093" duration="68000" />
+      <workItem from="1627050939686" duration="6618000" />
+      <workItem from="1627310044994" duration="6751000" />
+      <workItem from="1627836171316" duration="23000" />
+      <workItem from="1627836228409" duration="308000" />
     </task>
     <servers />
   </component>
@@ -107,15 +124,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="2383" y="197" key="SettingsEditor" timestamp="1613916931349">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2383" y="197" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1613916931349" />
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1613916914157">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1613916914157" />
   </component>
 </project>
