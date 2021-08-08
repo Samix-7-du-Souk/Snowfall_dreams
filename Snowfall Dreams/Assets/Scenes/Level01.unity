@@ -11649,11 +11649,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a8f97fae8aebc409024d1f2fd2e479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pv: 4
+  pv: 2
   numPv: 4
-  couers: []
-  fullvie: {fileID: 0}
-  zerovie: {fileID: 0}
+  couers:
+  - {fileID: 167030909}
+  - {fileID: 37775892}
+  - {fileID: 2091633454}
+  - {fileID: 1485471038}
+  fullvie: {fileID: 21300000, guid: 2d5ad9d567c77454999b6db7b63e2fc1, type: 3}
+  zerovie: {fileID: 21300000, guid: a69f093d7c897ec4aa894b57cbe25115, type: 3}
 --- !u!1 &1485471036
 GameObject:
   m_ObjectHideFlags: 0
