@@ -16,13 +16,26 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
 
+    public float hangTime = .2f;
+    private float hangCounter;
+
     private void Update()
     {
+        // Manage hangtime
+        if (isGrounded)
+        {
+            hangCounter = hangTime;
+        }
+        else
+        {
+            hangCounter -= Time.deltaTime;
+        }
+        
         // Move as long as you press the button
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
         // Check if is on ground and pressed the jump button
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && hangCounter > 0)
         {
             isJumping = true;
         }
