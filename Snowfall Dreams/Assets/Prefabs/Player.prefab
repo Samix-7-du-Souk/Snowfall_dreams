@@ -182,7 +182,7 @@ MonoBehaviour:
   groundCheckRadiusSide: 0.1
   climbableWalls:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   hangTime: 0.2
   jumpBufferLength: 0.1
 --- !u!114 &7767684911607761017
