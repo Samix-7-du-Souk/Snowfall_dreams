@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Pv : MonoBehaviour
+public class PointDeVie : MonoBehaviour
 {
     public int pv;      // les point de viesau joeurs    //
     public int numPv; // le nbr de pv max //
@@ -37,6 +37,7 @@ public class Pv : MonoBehaviour
                 couers[i].enabled = false;
             }
         }
+
     }
 
 
