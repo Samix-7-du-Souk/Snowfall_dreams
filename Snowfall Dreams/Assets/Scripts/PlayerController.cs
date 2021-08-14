@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool onWall;
     private bool onRightWall;
     private bool onLeftWall;
-    public bool wallGrab;
+    private bool wallGrab;
     public int side;
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
     public bool wallSlide;
     public float slidePower = 1;
     // Wall jump
-    private bool canMove;
-    private bool wallJumped;
+    public bool canMove;
+    public bool wallJumped;
     
     public float hangTime = .2f;
     private float hangCounter;
@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
             theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, theRB.velocity.y);
         else
             theRB.velocity = Vector2.Lerp(theRB.velocity,
-                    new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, theRB.velocity.y), jumpLerp * Time.deltaTime);
+                    new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, theRB.velocity.y), 1 * Time.deltaTime);
     }
 
     private void WallSlide()
