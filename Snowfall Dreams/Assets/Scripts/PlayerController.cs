@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadiusSide;
     public LayerMask climbableWalls;
     public float climbSpeed;
+    private bool onClimbableWalls;
     // Wall slide
     public bool wallSlide;
     public float slidePower = 1;
@@ -50,13 +51,16 @@ public class PlayerController : MonoBehaviour
         //Check if is on ground thank to an OverlapCircle
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
         
-        onLeftWall = Physics2D.OverlapCircle(groundCheckLeft.position, groundCheckRadiusSide, climbableWalls);
-        onRightWall = Physics2D.OverlapCircle(groundCheckRight.position, groundCheckRadiusSide, climbableWalls);
+        onLeftWall = Physics2D.OverlapCircle(groundCheckLeft.position, groundCheckRadiusSide, collisionLayers);
+        onRightWall = Physics2D.OverlapCircle(groundCheckRight.position, groundCheckRadiusSide, collisionLayers);
         onWall = onLeftWall || onRightWall;
         // If player is on right wall output 1 else -1 -> ternary conditional operator
         side = onRightWall ? 1 : -1;
+        onClimbableWalls = Physics2D.OverlapCircle(groundCheckLeft.position, groundCheckRadiusSide, climbableWalls) ||
+                           Physics2D.OverlapCircle(groundCheckRight.position, groundCheckRadiusSide, climbableWalls);
 
-        if (onWall && Input.GetButton("Grab"))
+
+        if (onWall && Input.GetButton("Grab") && onClimbableWalls)
         {
             wallGrab = true;
             wallSlide = false;
@@ -68,7 +72,7 @@ public class PlayerController : MonoBehaviour
             wallSlide = false;
         }
 
-        if (wallGrab)
+        if (wallGrab && onClimbableWalls)
         {
             theRB.gravityScale = 0;
             theRB.velocity = new Vector2(theRB.velocity.x, 0);
@@ -158,9 +162,7 @@ public class PlayerController : MonoBehaviour
 
     private void WallSlide()
     {
-        bool pushingWall = false;
-        if ((onRightWall && theRB.velocity.x > 0) || (onLeftWall && theRB.velocity.x < 0))
-            pushingWall = true;
+        bool pushingWall = (onRightWall && theRB.velocity.x > 0) || (onLeftWall && theRB.velocity.x < 0);
         float push = pushingWall ? 0 : theRB.velocity.x;
         theRB.velocity = new Vector2(push, -slidePower);
     }

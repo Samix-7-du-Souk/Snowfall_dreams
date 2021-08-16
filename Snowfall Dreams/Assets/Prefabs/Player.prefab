@@ -175,15 +175,18 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 1
-  wallGrab: 0
   side: 0
   groundCheckLeft: {fileID: 7256556872599669052}
   groundCheckRight: {fileID: 2633639713958169179}
   groundCheckRadiusSide: 0.1
   climbableWalls:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 512
   climbSpeed: 10
+  wallSlide: 0
+  slidePower: 1
+  canMove: 1
+  wallJumped: 0
   hangTime: 0.2
   jumpBufferLength: 0.1
 --- !u!114 &7767684911607761017
@@ -224,7 +227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4006620849855109390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0.075, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2391040617204432861}
@@ -254,7 +257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6989667443055352029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalPosition: {x: -0.075, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2391040617204432861}
