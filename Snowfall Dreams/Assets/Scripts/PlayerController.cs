@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
     
-    public Rigidbody2D theRB;
+    [FormerlySerializedAs("theRB")] public Rigidbody2D rb;
 
     private bool isGrounded;
     public Transform groundCheck;
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
-        theRB = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -74,14 +75,14 @@ public class PlayerController : MonoBehaviour
 
         if (wallGrab && onClimbableWalls)
         {
-            theRB.gravityScale = 0;
-            theRB.velocity = new Vector2(theRB.velocity.x, 0);
-            float speedModifier = y > 0 ? .35f : 1;
-            theRB.velocity = new Vector2(0, y * (climbSpeed * speedModifier));
+            rb.gravityScale = 0;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            float speedModifier = y > 0 ? .35f : .8f;
+            rb.velocity = new Vector2(0, y * (climbSpeed * speedModifier));
         }
         else
         {
-            theRB.gravityScale = 1;
+            rb.gravityScale = 1;
         }
 
         if (onWall && isGrounded)
@@ -125,12 +126,12 @@ public class PlayerController : MonoBehaviour
         // Manage jump
         if (jumpBufferCount >= 0 && hangCounter > 0)
         {
-            theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpBufferCount = 0;
         }
-        if (Input.GetButtonUp("Jump") && theRB.velocity.y > 0)
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
-            theRB.velocity = new Vector2(theRB.velocity.x, theRB.velocity.y * .5f);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
         }
         if (Input.GetButtonDown("Jump") && !isGrounded && onWall)
         {
@@ -154,25 +155,25 @@ public class PlayerController : MonoBehaviour
         if (wallGrab)
             return;
         if (!wallJumped)
-            theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, theRB.velocity.y);
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
         else
-            theRB.velocity = Vector2.Lerp(theRB.velocity,
-                    new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, theRB.velocity.y), 1 * Time.deltaTime);
+            rb.velocity = Vector2.Lerp(rb.velocity,
+                    new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y), 1 * Time.deltaTime);
     }
 
     private void WallSlide()
     {
-        bool pushingWall = (onRightWall && theRB.velocity.x > 0) || (onLeftWall && theRB.velocity.x < 0);
-        float push = pushingWall ? 0 : theRB.velocity.x;
-        theRB.velocity = new Vector2(push, -slidePower);
+        bool pushingWall = (onRightWall && rb.velocity.x > 0) || (onLeftWall && rb.velocity.x < 0);
+        float push = pushingWall ? 0 : rb.velocity.x;
+        rb.velocity = new Vector2(push, -slidePower);
     }
 
     private void WallJump()
     {
         StartCoroutine(DisableMovement(0.1f));
         Vector2 wallDirection = onRightWall ? Vector2.left : Vector2.right;
-        theRB.velocity = new Vector2(theRB.velocity.x, 0);
-        theRB.velocity += (Vector2.up + wallDirection) * jumpForce;
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.velocity += (Vector2.up * 1.2f + wallDirection) * jumpForce;
         wallJumped = true;
     }
 
