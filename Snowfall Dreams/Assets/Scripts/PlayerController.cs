@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
     public bool wallSlide;
     public float slidePower = 1;
     // Wall jump
+    public LayerMask nonJumpableWalls;
+    private bool onNonJumpableWalls;
+    private bool onNonJumpableGround;
+    
     public bool canMove;
     public bool wallJumped;
     
@@ -59,7 +63,9 @@ public class PlayerController : MonoBehaviour
         side = onRightWall ? 1 : -1;
         onClimbableWalls = Physics2D.OverlapCircle(groundCheckLeft.position, groundCheckRadiusSide, climbableWalls) ||
                            Physics2D.OverlapCircle(groundCheckRight.position, groundCheckRadiusSide, climbableWalls);
-
+        onNonJumpableWalls = Physics2D.OverlapCircle(groundCheckLeft.position, groundCheckRadiusSide, nonJumpableWalls) ||
+                             Physics2D.OverlapCircle(groundCheckRight.position, groundCheckRadiusSide, nonJumpableWalls);
+        onNonJumpableGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, nonJumpableWalls);
 
         if (onWall && Input.GetButton("Grab") && onClimbableWalls)
         {
@@ -99,13 +105,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (isGrounded)
+        if (isGrounded || onNonJumpableGround)
         {
             wallJumped = false;
         }
 
         // Manage hangtime
-        if (isGrounded) {
+        if (isGrounded || onNonJumpableGround) {
             hangCounter = hangTime;
         }
         else 
@@ -138,7 +144,8 @@ public class PlayerController : MonoBehaviour
             WallJump();
         }
     }
-    
+
+    #region functions
     private void OnDrawGizmos()
     {
         // Draw an gizmo to represent the OverlapCircle
@@ -183,4 +190,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
         canMove = true;
     }
+    #endregion
+    
 }
