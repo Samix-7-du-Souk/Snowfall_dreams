@@ -170,12 +170,15 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 6
   rb: {fileID: 2391040617204432856}
+  canMove: 1
+  wallJumped: 0
+  hangTime: 0.2
+  jumpBufferLength: 0.1
   groundCheck: {fileID: 2391040617033039763}
   groundCheckRadius: 0.2
   collisionLayers:
     serializedVersion: 2
     m_Bits: 1
-  onWall: 0
   side: 0
   groundCheckLeft: {fileID: 7256556872599669052}
   groundCheckRight: {fileID: 2633639713958169179}
@@ -188,11 +191,7 @@ MonoBehaviour:
   slidePower: 1
   nonJumpableWalls:
     serializedVersion: 2
-    m_Bits: 0
-  canMove: 1
-  wallJumped: 0
-  hangTime: 0.2
-  jumpBufferLength: 0.1
+    m_Bits: 1024
 --- !u!114 &7767684911607761017
 MonoBehaviour:
   m_ObjectHideFlags: 0

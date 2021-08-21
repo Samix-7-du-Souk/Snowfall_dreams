@@ -12477,16 +12477,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6070267616644987539, guid: 3df5195443c399840a49dfa9320515d0,
-        type: 3}
-      propertyPath: groundCheckRadiusSide
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6070267616644987539, guid: 3df5195443c399840a49dfa9320515d0,
-        type: 3}
-      propertyPath: nonJumpableWalls.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
     - target: {fileID: 6989667443055352029, guid: 3df5195443c399840a49dfa9320515d0,
         type: 3}
       propertyPath: m_IsActive

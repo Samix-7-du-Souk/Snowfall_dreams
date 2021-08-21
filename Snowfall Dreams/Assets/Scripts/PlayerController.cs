@@ -1,48 +1,52 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movements variables and basics stuffs", order=0)]
     public float moveSpeed;
     public float jumpForce;
+    public Rigidbody2D rb;
     
-    [FormerlySerializedAs("theRB")] public Rigidbody2D rb;
+    public bool canMove;
+    [SerializeField] private bool wallJumped;
+    
+    [Tooltip("For coyote time, it let you jump in a short amount of time after leaving edge.")]
+    public float hangTime = .2f;
+    private float hangCounter;
 
-    private bool isGrounded;
+    [Tooltip("For buffer time, it let you anticipate the next jump even if you're not on the ground.")]
+    public float jumpBufferLength = .5f;
+    private float jumpBufferCount;
+
+    [Header("Check the ground", order=1)]
+    [SerializeField] private bool isGrounded;
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask collisionLayers;
-    // For walls thingy
-    // Wall climb
-    private bool onWall;
+    
+    [Header("Walls interactions : Wall climb", order=2)]
+    [SerializeField] private bool onWall;
     private bool onRightWall;
     private bool onLeftWall;
     private bool wallGrab;
-    public int side;
+    private bool onClimbableWalls;
+    [SerializeField] private int side;
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
     public float groundCheckRadiusSide;
     public LayerMask climbableWalls;
     public float climbSpeed;
-    private bool onClimbableWalls;
-    // Wall slide
+    
+    [Header("Walls interactions : Wall slide", order=3)]
     public bool wallSlide;
     public float slidePower = 1;
-    // Wall jump
+    
+    [Header("Walls interactions : Wall jump", order=4)]
     public LayerMask nonJumpableWalls;
     private bool onNonJumpableWalls;
     private bool onNonJumpableGround;
-    
-    public bool canMove;
-    public bool wallJumped;
-    
-    public float hangTime = .2f;
-    private float hangCounter;
 
-    public float jumpBufferLength = .5f;
-    private float jumpBufferCount;
-    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
