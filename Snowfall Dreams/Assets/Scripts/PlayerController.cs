@@ -79,6 +79,11 @@ public class PlayerController : MonoBehaviour
             wallSlide = false;
         }
 
+        if (!isGrounded && Input.GetButton("Grab"))
+        {
+            groundCheckRadiusSide = 0.1f;
+        }
+
         if (wallGrab && onClimbableWalls)
         {
             rb.gravityScale = 0;
@@ -105,14 +110,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (isGrounded || onNonJumpableGround)
-        {
-            wallJumped = false;
-        }
-
         // Manage hangtime
         if (isGrounded || onNonJumpableGround) {
+            wallJumped = false;
             hangCounter = hangTime;
+            groundCheckRadiusSide = 0;
         }
         else 
         {
