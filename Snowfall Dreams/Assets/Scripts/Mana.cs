@@ -41,7 +41,7 @@ public class Mana : MonoBehaviour
                 manaCell[x].enabled = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetButtonDown("Cure"))
         {
             if (mp >= 5)
             {

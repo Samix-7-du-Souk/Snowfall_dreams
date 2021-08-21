@@ -39,8 +39,10 @@ public class PointDeVie : MonoBehaviour
         }
 
     }
-
-
+    public void TakeDamage(int damage)
+    {
+        pv -= damage;
+    }
 }
 
 
