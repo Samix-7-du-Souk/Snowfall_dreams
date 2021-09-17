@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PointDeVie : MonoBehaviour
 {
-    public int pv;      // les point de viesau joeurs    //
-    public int numPv; // le nbr de pv max //
+    public int pv;      // les points de vie au joueur
+    public int numPv; // le nbr de pv max
 
     public Image[] couers;
     public Sprite fullvie;

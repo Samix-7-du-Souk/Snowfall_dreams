@@ -7,11 +7,13 @@ public class Mana : MonoBehaviour
 {
     public int mp;      // les point de viesau joeurs    //
     public int numMp; // le nbr de pv max //
+    public int fillMp;
 
     public Image[] manaCell;
     public Sprite fullMp;
     public Sprite useMP;
     public PointDeVie pointDeVie;
+    public Image manaFill;
 
    
 
@@ -41,9 +43,16 @@ public class Mana : MonoBehaviour
                 manaCell[x].enabled = false;
             }
         }
+        if ( mp <= 0)
+        {
+            manaFill = transform.Find("Bar").GetComponent<Image>();
+            manaFill.fillAmount = 3f;
+           
+
+        }
         if (Input.GetButtonDown("Cure"))
         {
-            if (mp >= 5)
+            if (mp >= 5 && pointDeVie.pv < pointDeVie.numPv)
             {
                 Heal(5);
             }

@@ -30,12 +30,20 @@ public class EnemyBehaviour : MonoBehaviour
             target = waypoints[destPoint];
         }
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Player"))
+        {
+            Debug.Log("collision");
+            pointDeVie.TakeDamage(1);
+        }
+    }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Player"))
         {
-            
+            Debug.Log("collision");
             pointDeVie.TakeDamage(1);
         }
     }
