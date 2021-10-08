@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class EnemyBehaviour : MonoBehaviour
 {
+    
     public float speed;
     public Transform[] waypoints;
     public PointDeVie pointDeVie;
@@ -18,6 +20,12 @@ public class EnemyBehaviour : MonoBehaviour
         target = waypoints[0];
     }
 
+    private void Reset()
+    {
+        GetComponent<CircleCollider2D>().isTrigger = true;
+    }
+
+    
     void Update()
     {
         Vector3 dir = target.position - transform.position;
@@ -30,14 +38,7 @@ public class EnemyBehaviour : MonoBehaviour
             target = waypoints[destPoint];
         }
     }
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.CompareTag("Player"))
-        {
-            Debug.Log("collision");
-            pointDeVie.TakeDamage(1);
-        }
-    }
+    
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -47,4 +48,6 @@ public class EnemyBehaviour : MonoBehaviour
             pointDeVie.TakeDamage(1);
         }
     }
+
+    
 }
