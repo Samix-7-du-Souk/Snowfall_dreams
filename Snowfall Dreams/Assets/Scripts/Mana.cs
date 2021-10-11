@@ -7,27 +7,27 @@ public class Mana : MonoBehaviour
 {
     public int mp;      // les point de viesau joeurs    //
     public int numMp; // le nbr de pv max //
-    public float maxValue = 100, currentValue, currentValueSlow;
-     
+    [SerializeField] public Animator myAnimationController;
+    public float manaRefresch = 30f;
+    
+
 
     public Image[] manaCell;
     public Sprite fullMp;
     public Sprite useMP;
     public Sprite noMp;
     public PointDeVie pointDeVie;
-    public Image manaFill, manaSlow;
+ 
 
-  
+
+
     void Start()
     {
-        currentValue = maxValue;
-        currentValueSlow = maxValue;
-        mp = numMp;
         
+        mp = numMp;
+        myAnimationController.SetBool("manaBool",false);
+
     }
-
-
-    float t = 0;
 
   
     void Update()
@@ -59,33 +59,16 @@ public class Mana : MonoBehaviour
             }
             
             {
-                if (mp > 0)
+                if (mp <= 0)
                 {
-                    currentValue = maxValue;
-                    currentValueSlow = maxValue;
 
-                }
-                else
-                {
                     manaCell[x].sprite = noMp;
-                    currentValue = 100;
-                    currentValueSlow = 100;
-                    if (Input.GetButtonDown("LOSE"))
-                    {
-                        loseMp(100);
+                    StartCoroutine(ReFill());
 
-                    }
-                        
-                    if (currentValueSlow != currentValue)
-                    {
-                        currentValueSlow = Mathf.Lerp(currentValueSlow, currentValue, t);
-                        t += 1000.0f * Time.deltaTime;
-                        
-                    }
+
 
                 }
-                manaFill.fillAmount = currentValue / maxValue;
-                manaSlow.fillAmount = currentValueSlow / maxValue;
+
             }
             
      
@@ -105,7 +88,18 @@ public class Mana : MonoBehaviour
 
 
     }
-  
+
+    public IEnumerator ReFill()
+    {
+        myAnimationController.SetBool("manaBool", true);
+        yield return new WaitForSeconds(manaRefresch);
+        
+        myAnimationController.SetBool("manaBool", false);
+        mp = numMp;
+
+
+    }
+
 
     public void Heal(int manaUse)
     {
@@ -113,12 +107,6 @@ public class Mana : MonoBehaviour
         mp -= manaUse;
         pointDeVie.pv += 2;
 
-    }
-
-    public void loseMp(float lose)
-    {
-        currentValue -= lose;
-        currentValueSlow = currentValue;
     }
 
 }

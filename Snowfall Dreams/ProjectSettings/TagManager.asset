@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - GM
+  - FadeSystem
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX

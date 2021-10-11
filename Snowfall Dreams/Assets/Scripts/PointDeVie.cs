@@ -8,13 +8,16 @@ public class PointDeVie : MonoBehaviour
 {
     public int pv;      // les points de vie au joueur
     public int numPv; // le nbr de pv max
-    public bool invisibleFrame = false;
+    public float invincibilityTimeAfterHit = 3f;
+    public float invincibilityFlashDelay = 0.2f;
+    public bool isInvincible = false;
 
     public Image[] couers;
     public Sprite fullvie;
     public Sprite zerovie;
+    public SpriteRenderer graphics;
 
-    
+
     void Start ()
     {
         pv = numPv ;
@@ -49,33 +52,40 @@ public class PointDeVie : MonoBehaviour
                 couers[i].enabled = false;
             }
         }
-        if (pv <= 0) // reset la scene quand je meur
+        /* if (pv <= 0) 
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        } */
     }
     public void TakeDamage(int damage)
     {
-        if (!invisibleFrame)
+        if (!isInvincible)
         {
             pv -= damage;
-            invisibleFrame = true;
-            StartCoroutine(InvincibiltyFlash());
+            isInvincible = true;
+            StartCoroutine(InvincibilityFlash());
+            StartCoroutine(HandleInvincibilityDelay());
         }
 
     }
-    public IEnumerator InvincibiltyFlash()
+
+    public IEnumerator InvincibilityFlash()
     {
-        while(invisibleFrame)
+        while (isInvincible)
         {
-            
             graphics.color = new Color(1f, 1f, 1f, 0f);
-            yield return new WaitForSeconds(1f);
-            graphics.color = new Color(1f, 1f, 1f, 0f);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(invincibilityFlashDelay);
+            graphics.color = new Color(1f, 1f, 1f, 1f);
+            yield return new WaitForSeconds(invincibilityFlashDelay);
         }
     }
-        
+
+    public IEnumerator HandleInvincibilityDelay()
+    {
+        yield return new WaitForSeconds(invincibilityTimeAfterHit);
+        isInvincible = false;
+    }
+
 }
 
 
