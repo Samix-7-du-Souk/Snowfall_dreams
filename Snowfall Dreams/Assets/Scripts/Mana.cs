@@ -7,7 +7,7 @@ public class Mana : MonoBehaviour
 {
     public int mp;      // les point de viesau joeurs    //
     public int numMp; // le nbr de pv max //
-    [SerializeField] public Animator myAnimationController;
+    public Animator anim;
     public float manaRefresch = 30f;
     
 
@@ -25,7 +25,8 @@ public class Mana : MonoBehaviour
     {
         
         mp = numMp;
-        myAnimationController.SetBool("manaBool",false);
+        anim = GetComponent<Animator>();
+        
 
     }
 
@@ -91,10 +92,13 @@ public class Mana : MonoBehaviour
 
     public IEnumerator ReFill()
     {
-        myAnimationController.SetBool("manaBool", true);
+        anim.Play("barMana");
         yield return new WaitForSeconds(manaRefresch);
         
-        myAnimationController.SetBool("manaBool", false);
+
+
+
+
         mp = numMp;
 
 

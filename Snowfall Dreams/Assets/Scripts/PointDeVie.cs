@@ -8,6 +8,8 @@ public class PointDeVie : MonoBehaviour
 {
     public int pv;      // les points de vie au joueur
     public int numPv; // le nbr de pv max
+    public int extrapv;      // les points de vie extra au joueur
+    public int extraNumPv; // le nbr de pv extra max
     public float invincibilityTimeAfterHit = 3f;
     public float invincibilityFlashDelay = 0.2f;
     public bool isInvincible = false;
@@ -16,6 +18,9 @@ public class PointDeVie : MonoBehaviour
     public Sprite fullvie;
     public Sprite zerovie;
     public SpriteRenderer graphics;
+    public Image[] extraCouers;
+    public Sprite extraFullvie;
+    public Sprite extraZerovie;
 
 
     void Start ()
@@ -52,6 +57,38 @@ public class PointDeVie : MonoBehaviour
                 couers[i].enabled = false;
             }
         }
+        if (extrapv > extraNumPv)
+        {
+            extrapv = extraNumPv;
+        }
+        for (int y = 0; y < extraCouers.Length; y++) // y = nbr de  extra couers afficher//
+        {
+            if (extrapv < 0)
+            {
+                extrapv = 0;
+            }
+            if (y < extrapv)
+            {
+                extraCouers[y].sprite = extraFullvie;
+            }
+            else
+            {
+                extraCouers[y].sprite = extraZerovie;
+            }
+            if (y < extraNumPv)
+            {
+                extraCouers[y].enabled = true;
+            }
+            else
+            {
+                extraCouers[y].enabled = false;
+            }
+        }
+
+
+
+
+
         /* if (pv <= 0) 
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -61,10 +98,23 @@ public class PointDeVie : MonoBehaviour
     {
         if (!isInvincible)
         {
-            pv -= damage;
-            isInvincible = true;
-            StartCoroutine(InvincibilityFlash());
-            StartCoroutine(HandleInvincibilityDelay());
+            if (extrapv > 0)
+            {
+                
+                extraNumPv -= damage;
+                isInvincible = true;
+                StartCoroutine(InvincibilityFlash());
+                StartCoroutine(HandleInvincibilityDelay());
+
+            }
+            else
+            {
+                pv -= damage;
+                isInvincible = true;
+                StartCoroutine(InvincibilityFlash());
+                StartCoroutine(HandleInvincibilityDelay());
+            }
+           
         }
 
     }
