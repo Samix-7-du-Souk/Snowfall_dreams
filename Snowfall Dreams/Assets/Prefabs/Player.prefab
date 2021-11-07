@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 2391040617204432859}
   - component: {fileID: 2391040617204432856}
   - component: {fileID: 2391040617204432857}
+  - component: {fileID: 5054368439409398813}
+  - component: {fileID: 84957373363853533}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -172,3 +174,63 @@ CapsuleCollider2D:
   m_Offset: {x: 0.00051671267, y: -0.00051671267}
   m_Size: {x: 0.17829745, y: 0.17829745}
   m_Direction: 0
+--- !u!114 &5054368439409398813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391040617204432838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a8f97fae8aebc409024d1f2fd2e479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pv: 4
+  numPv: 4
+  extrapv: 4
+  extraNumPv: 4
+  invincibilityTimeAfterHit: 3
+  invincibilityFlashDelay: 0.2
+  isInvincible: 0
+  couers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullvie: {fileID: 21300000, guid: 2d5ad9d567c77454999b6db7b63e2fc1, type: 3}
+  zerovie: {fileID: 21300000, guid: 8106313fbbccd0445b2ed60632bdfd47, type: 3}
+  graphics: {fileID: 0}
+  extraCouers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  extraFullvie: {fileID: 21300000, guid: 493290bb5c832604abfe39dd6cba8362, type: 3}
+  extraZerovie: {fileID: 21300000, guid: cfc71635270e5cc4c9e7f1f240e4a066, type: 3}
+--- !u!114 &84957373363853533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391040617204432838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f949539d25123ba4b9d890490da21e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mp: 5
+  numMp: 5
+  anim: {fileID: 0}
+  manaRefresch: 30
+  manaCell:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullMp: {fileID: 21300000, guid: e2f8fb7f543aaf8479c00a8d744cfebe, type: 3}
+  useMP: {fileID: 21300000, guid: b97c3354828eb4d4a8a563c7c5af1ba8, type: 3}
+  noMp: {fileID: 21300000, guid: cfc71635270e5cc4c9e7f1f240e4a066, type: 3}
+  pointDeVie: {fileID: 0}
