@@ -83,6 +83,12 @@ public class PointDeVie : MonoBehaviour
             {
                 extraCouers[y].enabled = false;
             }
+
+            if (Input.GetKeyDown("g"))
+            {
+                TakeDamage(1);
+            }
+            
         }
 
 
@@ -96,28 +102,30 @@ public class PointDeVie : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        if (!isInvincible)
-        {
-            if (extrapv > 0)
+        
+            if (!isInvincible)
             {
-                
-                extraNumPv -= damage;
-                isInvincible = true;
-                StartCoroutine(InvincibilityFlash());
-                StartCoroutine(HandleInvincibilityDelay());
+                if (extrapv > 0)
+                {
+
+                    extraNumPv -= damage;
+                    isInvincible = true;
+                    StartCoroutine(InvincibilityFlash());
+                    StartCoroutine(HandleInvincibilityDelay());
+
+                }
+                else
+                {
+                    pv -= damage;
+                    isInvincible = true;
+                    StartCoroutine(InvincibilityFlash());
+                    StartCoroutine(HandleInvincibilityDelay());
+                }
 
             }
-            else
-            {
-                pv -= damage;
-                isInvincible = true;
-                StartCoroutine(InvincibilityFlash());
-                StartCoroutine(HandleInvincibilityDelay());
-            }
-           
         }
 
-    }
+    
 
     public IEnumerator InvincibilityFlash()
     {
