@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public Animator animator;
+   /* public Animator animator;
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
@@ -69,6 +69,6 @@ public class NewBehaviourScript : MonoBehaviour
             Debug.Log("We hit" + enemy.name);
 
         }
-    }
+    }*/
 }
 
