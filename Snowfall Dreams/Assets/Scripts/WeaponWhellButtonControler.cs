@@ -4,13 +4,12 @@ using UnityEngine;
 public class WeaponWhellButtonControler : MonoBehaviour
 {
     public int Id;
-    private Animator anim;
     public Image selectedWeapon;
     private bool selected = false;
     public Sprite icon;
 
 
-    void Start()
+    void Update()
     {
         if (selected)
         {
@@ -22,17 +21,12 @@ public class WeaponWhellButtonControler : MonoBehaviour
     public void Selected()
     {
         selected = true;
+        WeaponWhellManager.weaponID = Id;
     }
     public void Deselected()
     {
         selected = false;
+        WeaponWhellManager.weaponID = 0;
     }
-    public void HoverEnter()
-    {
-        anim.SetBool("Hover", true);
-    }
-    public void HoverExit()
-    {
-        anim.SetBool("Hover", false);
-    }
+   
 }
