@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = gm.lastCheckPointPos;
     }
 
-    private void Update()
+    void Update()
     {
         // Move as long as you press the button
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
@@ -44,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer(horizontalMovement);
     }
 
-    void MovePlayer(float _horizontalMovement)
+    public void MovePlayer(float _horizontalMovement)
     {
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);

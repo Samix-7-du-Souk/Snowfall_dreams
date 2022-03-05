@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f7c5bcabe55de4f848b17dcfba1a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 6
+  moveSpeed: 6
+  jumpForce: 7.5
   rb: {fileID: 2391040617204432856}
   canMove: 1
   wallJumped: 0

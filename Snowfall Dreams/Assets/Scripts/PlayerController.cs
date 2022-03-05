@@ -1,13 +1,30 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     [Header("Movements variables and basics stuffs", order=0)]
     public float moveSpeed;
     public float jumpForce;
     public Rigidbody2D rb;
-    
+    public PlayerMovement playerMovement;
+    private TrailRenderer trailRenderer;
+
+    [Header("States")]
+    [SerializeField] private bool chargingSpeedBooster;
+    [SerializeField] private bool activeSpeedBooster;
+    //[SerializeField] public bool storedEnergy;
+    //[SerializeField] public bool chargingShineSpark;
+    //[SerializeField] public bool activeShineSpark;
+
+    [Header("Dashing")]
+    [SerializeField] private float dashVelocity = 14f;
+    [SerializeField] private float dashTime = 0.5f;
+    private Vector2 _dashingDir;
+    private bool _isDashing;
+    bool _canDash = true;
+
     public bool canMove;
     [SerializeField] private bool wallJumped;
     
@@ -47,9 +64,17 @@ public class PlayerController : MonoBehaviour
     private bool onNonJumpableWalls;
     private bool onNonJumpableGround;
 
+    [Header("Settings")]
+    [SerializeField] private float chargeTime = 1.5f;
+
+    private Coroutine speedCharge;
+
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     void Update()
@@ -149,8 +174,101 @@ public class PlayerController : MonoBehaviour
         {
             WallJump();
         }
+
+        var dashImput = Input.GetButtonDown("Dash");
+
+        if (dashImput && _canDash)
+        {
+            _isDashing = true;
+            _canDash = false;
+            trailRenderer.emitting = true;
+            _dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+            if (_dashingDir == Vector2.zero)
+            {
+                _dashingDir = new Vector2(transform.localScale.x, 0);
+            }
+            // add stop dash
+            StartCoroutine(StopDash());
+
+        }
+
+        if (_isDashing)
+        {
+            rb.velocity = _dashingDir.normalized * dashVelocity;
+            return;
+        }
+        if (isGrounded)
+        {
+            _canDash = true;
+        }
     }
 
+    private IEnumerator StopDash()
+    {
+        yield return new WaitForSeconds(dashTime);
+        trailRenderer.emitting = false;
+        _isDashing = false;
+    }
+    public void StopAll(bool shake)
+    {
+        if ((chargingSpeedBooster || activeSpeedBooster) )
+        {
+            bool shakeTrigger = chargingSpeedBooster;
+
+            if (!chargingSpeedBooster)
+                SpeedBoost(false);
+            ChargeSpeedBoost(false);
+
+
+            
+        }
+    }
+    public void StopSpeedCharge()
+    {
+        ChargeSpeedBoost(false);
+    }
+    public void ChargeSpeedBoost(bool state)
+    {
+        chargingSpeedBooster = state;
+
+        if (state)
+        {
+            speedCharge = StartCoroutine(ChargeCoroutine());
+
+
+        }
+        else
+        {
+            StopCoroutine(speedCharge);
+
+
+        }
+
+        IEnumerator ChargeCoroutine()
+        {
+            yield return new WaitForSeconds(chargeTime);
+            SpeedBoost(true);
+        }
+    }
+
+    public void SpeedBoost(bool state)
+    {
+        chargingSpeedBooster = false;
+        activeSpeedBooster = state;
+
+        float speed = (float)(playerMovement.moveSpeed * 2.5);
+
+        //playerMovement.MovePlayer(Vector2.right * playerMovement.horizontalMovement * speed * Time.deltaTime);
+
+        if (!state)
+        {
+
+            return;
+        }
+
+
+    }
     #region functions
     private void OnDrawGizmos()
     {
