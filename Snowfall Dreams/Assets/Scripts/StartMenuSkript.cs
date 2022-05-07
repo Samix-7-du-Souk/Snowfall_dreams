@@ -12,6 +12,7 @@ public class StartMenuSkript : MonoBehaviour
     public WeaponWhellManager weaponWhellManager;
     public GameObject pauseWhellMenuUI;
     public bool MenuIsActiv = false;
+    public bool _canPause = true;
 
 
     void Start()
@@ -20,7 +21,8 @@ public class StartMenuSkript : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButtonDown("Pause"))
+        var pauseImput = Input.GetButtonDown("Pause");
+        if (pauseImput)
         {
 
             
@@ -31,9 +33,14 @@ public class StartMenuSkript : MonoBehaviour
 
 
                 }
-                else
+                else 
                 {
-                    Pause(true);
+                    if (_canPause)
+                    {
+                        Pause(true);
+
+                    }
+                    
 
                 }
             
@@ -48,6 +55,7 @@ public class StartMenuSkript : MonoBehaviour
         Time.timeScale = 1f;
         StartGameIsPaused = false;
         MenuIsActiv = false;
+        _canPause = true;
     }
 
     public void Pause(bool state)
@@ -56,5 +64,6 @@ public class StartMenuSkript : MonoBehaviour
         Time.timeScale = 0f;
         StartGameIsPaused = true;
         MenuIsActiv = state;
+        _canPause = false;
     }
 }

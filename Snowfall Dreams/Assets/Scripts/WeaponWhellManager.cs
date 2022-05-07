@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class WeaponWhellManager : MonoBehaviour
 {
 
-    public Animator anim;
+    //public Animator anim;
     private bool weaponWheelSelected = false;
     public Image selectedItem;
     public Sprite noImage;
     public static int weaponID;
     public static bool GameIsPaused = false;
     public GameObject pauseWhellMenuUI;
+    public StartMenuSkript menuSkript;
 
 
     void Start()
@@ -33,18 +34,23 @@ public class WeaponWhellManager : MonoBehaviour
             }
             else
             {
-                Pause();
-                weaponWheelSelected = !weaponWheelSelected;
+                if (menuSkript._canPause)
+                {
+                    Pause();
+                    weaponWheelSelected = !weaponWheelSelected;
+
+                }
+                
             }
 
         }
         if (weaponWheelSelected)
         {
-            anim.SetBool("OpenWeaponWheel", true);
+           // anim.SetBool("OpenWeaponWheel", true);
         }
         else
         {
-            anim.SetBool("OpenWeaponWheel", false);
+            //anim.SetBool("OpenWeaponWheel", false);
         }
 
         void Resume()
@@ -52,6 +58,7 @@ public class WeaponWhellManager : MonoBehaviour
             pauseWhellMenuUI.SetActive(false);
             Time.timeScale = 1f;
             GameIsPaused = false;
+            menuSkript._canPause = true;
         }
 
         void Pause()
@@ -59,6 +66,7 @@ public class WeaponWhellManager : MonoBehaviour
             pauseWhellMenuUI.SetActive(true);
             Time.timeScale = 0f;
             GameIsPaused = true;
+            menuSkript._canPause = false;
         }
 
         switch (weaponID)

@@ -5,41 +5,52 @@ using UnityEngine.UI;
 
 public class Mana : MonoBehaviour
 {
-    public int mp;      // les point de viesau joeurs    //
-    public int numMp; // le nbr de pv max //
-    public Animator anim;
-    public float manaRefresch = 30f;
+    
+    [SerializeField] public Image cooldown;
+    public float manaRefresch = 0.0f; // aka cooldownTime
+    public float manaReady = 30.0f; // aka cooldownTimer
+    public bool coolingDown = false; // cooldow state
+
+    public int mp;      // player mana points    
+    public int numMp; // max mana points 
+    //public Animator anim;
     
 
 
-    public Image[] manaCell;
+
+    public Image[] manaCell; // mp sprites
     public Sprite fullMp;
     public Sprite useMP;
     public Sprite noMp;
-    public PointDeVie pointDeVie;
+    public PointDeVie pointDeVie; // live point script
+    
  
 
 
 
     void Start()
     {
-        
+        //anim = GetComponent<Animator>();
         mp = numMp;
-        anim = GetComponent<Animator>();
+        coolingDown = false;
         
+        cooldown.fillAmount = 0.0f;
+
 
     }
 
   
     void Update()
     {
+        
+
         if (mp > numMp)
         {
             mp = numMp;
         }
 
         
-        for (int x = 0; x < manaCell.Length; x++) // x = nbr de mp afficher
+        for (int x = 0; x < manaCell.Length; x++) // x = number of mp display
         {
             
             if (x < mp)
@@ -58,43 +69,49 @@ public class Mana : MonoBehaviour
             {
                 manaCell[x].enabled = false;
             }
-            
+
+
+            if (mp <= 0)
             {
-                if (mp <= 0)
+
+                manaCell[x].sprite = noMp;
+                coolingDown = true;
+            
+            }
+
+        }
+
+        if (coolingDown)
+        {
+            manaReady = manaRefresch;
+            AplyCooldown();
+        }
+        else
+        {
+            // cure spell that heals 2 lp for 5 mp
+            if (Input.GetButtonDown("Cure"))
+            {
+                if (mp >= 5 && pointDeVie.pv < pointDeVie.numPv)
                 {
-
-                    manaCell[x].sprite = noMp;
-                    StartCoroutine(ReFill());
-
+                    Heal(5);
 
 
                 }
 
             }
-            
-     
-        }
-
-
-        if (Input.GetButtonDown("Cure"))
-        {
-            if (mp >= 5 && pointDeVie.pv < pointDeVie.numPv)
-            {
-                Heal(5);
-            }
 
         }
-
-
 
 
     }
 
-    public IEnumerator ReFill()
+   /* public IEnumerator ReFill()
     {
-        anim.Play("barMana");
+        //anim.Play("barMana");
         yield return new WaitForSeconds(manaRefresch);
-        
+        cooldown.fillAmount -= 1.0f / manaRefresch * Time.deltaTime;
+        coolingDown = false;
+
 
 
 
@@ -102,8 +119,8 @@ public class Mana : MonoBehaviour
         mp = numMp;
 
 
-    }
-
+    }*/
+    
 
     public void Heal(int manaUse)
     {
@@ -111,6 +128,23 @@ public class Mana : MonoBehaviour
         mp -= manaUse;
         pointDeVie.pv += 2;
 
+    }
+    public void AplyCooldown()
+    {
+        Debug.Log("Start cooldown");
+        manaReady -= Time.deltaTime;
+
+        if (manaReady < 0.0f)
+        {
+            coolingDown = false;
+            cooldown.fillAmount = 0.0f;
+            mp = numMp; // reset mp to max
+        }
+        else
+        {
+            Debug.Log(" cooldown anim");
+            cooldown.fillAmount = manaReady / manaRefresch;
+        }
     }
 
 }

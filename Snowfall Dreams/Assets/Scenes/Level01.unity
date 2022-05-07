@@ -1631,6 +1631,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &842093871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2291812686482252035, guid: cd2e406a35c0d8547aca17adb0dd2a2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2291812686531984679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &842093872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3966746931966781499, guid: cd2e406a35c0d8547aca17adb0dd2a2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2291812686531984679}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842093871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec4701c4f8ee440498360f672187293d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &932036527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1769,7 +1787,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1145697140}
-          m_MethodName: set_enabled
+          m_MethodName: Pause
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1858,6 +1876,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4202302726396221581, guid: 14bc739b02ad5f9459ba23658e3bebc6,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4202302726396221587, guid: 14bc739b02ad5f9459ba23658e3bebc6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4202302726396221587, guid: 14bc739b02ad5f9459ba23658e3bebc6,
         type: 3}
       propertyPath: m_Controller
@@ -1924,12 +1952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &1136796518 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4202302726396221587, guid: 14bc739b02ad5f9459ba23658e3bebc6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1058816884}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1145697135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,9 +2065,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseStartMenuUI: {fileID: 807260586}
-  weaponWhellManager: {fileID: 0}
-  pauseWhellMenuUI: {fileID: 0}
+  weaponWhellManager: {fileID: 842093872}
+  pauseWhellMenuUI: {fileID: 842093871}
   MenuIsActiv: 0
+  _canPause: 1
 --- !u!114 &1210974877 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4202302726262529779, guid: 14bc739b02ad5f9459ba23658e3bebc6,
@@ -12570,8 +12593,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mp: 5
   numMp: 5
-  anim: {fileID: 1136796518}
   manaRefresch: 30
+  coolingDown: 0
   manaCell:
   - {fileID: 1629432986}
   - {fileID: 1659221434}
@@ -12582,6 +12605,7 @@ MonoBehaviour:
   useMP: {fileID: 21300000, guid: b97c3354828eb4d4a8a563c7c5af1ba8, type: 3}
   noMp: {fileID: 21300000, guid: cfc71635270e5cc4c9e7f1f240e4a066, type: 3}
   pointDeVie: {fileID: 1384267569}
+  cooldown: {fileID: 1456970349}
 --- !u!114 &1384267569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12751,6 +12775,18 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2291812685617806262, guid: cd2e406a35c0d8547aca17adb0dd2a2b,
     type: 3}
   m_PrefabInstance: {fileID: 2291812686531984679}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1456970349 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4202302726396221581, guid: 14bc739b02ad5f9459ba23658e3bebc6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1058816884}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -13960,6 +13996,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3966746931966781499, guid: cd2e406a35c0d8547aca17adb0dd2a2b,
+        type: 3}
+      propertyPath: menuSkript
+      value: 
+      objectReference: {fileID: 1145697140}
     - target: {fileID: 8031819424647850591, guid: cd2e406a35c0d8547aca17adb0dd2a2b,
         type: 3}
       propertyPath: noImage
