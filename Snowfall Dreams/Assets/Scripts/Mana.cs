@@ -134,7 +134,7 @@ public class Mana : MonoBehaviour
         Debug.Log("Start cooldown");
         manaReady -= Time.deltaTime;
 
-        if (manaReady < 0.0f)
+        if (manaReady <= 0.0f)
         {
             coolingDown = false;
             cooldown.fillAmount = 0.0f;

@@ -4,11 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private NewPlayerScript newPlayerScript;
+
+    private void Awake()
+    {
+        newPlayerScript = new NewPlayerScript();
+    }
+
+    private void OnEnable()
+    {
+        newPlayerScript.Enable();
+    }
+
+    private void OnDisable()
+    {
+        newPlayerScript.Disable();
+    }
+
     [Header("Movements variables and basics stuffs", order=0)]
     public float moveSpeed;
     public float jumpForce;
     public Rigidbody2D rb;
-    public PlayerMovement playerMovement;
+    private PlayerMovement playerMovement;
     private TrailRenderer trailRenderer;
 
     [Header("States")]
@@ -75,13 +92,16 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         trailRenderer = GetComponent<TrailRenderer>();
+         //newPlayerScript.Land.Jump.performed += _ => jump();
+        
     }
 
     void Update()
     {
         Run();
-        float y = Input.GetAxis("Vertical");
-
+        float vertical = newPlayerScript.Land.vert.ReadValue<float>();
+        float mouvement = newPlayerScript.Land.move.ReadValue<float>();
+        
         //Check if is on ground thank to an OverlapCircle
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
         
@@ -117,8 +137,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.gravityScale = 0;
             rb.velocity = new Vector2(rb.velocity.x, 0);
-            float speedModifier = y > 0 ? .35f : .8f;
-            rb.velocity = new Vector2(0, y * (climbSpeed * speedModifier));
+            float speedModifier = vertical > 0 ? .35f : .8f;
+            rb.velocity = new Vector2(0, vertical * (climbSpeed * speedModifier));
         }
         else
         {
@@ -151,7 +171,7 @@ public class PlayerController : MonoBehaviour
         }
         
         // Manage jump buffer
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButton("Jump"))
         {
             jumpBufferCount = jumpBufferLength;
         }
@@ -166,11 +186,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpBufferCount = 0;
         }
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
+        if (Input.GetButton("Jump") && rb.velocity.y > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
         }
-        if (Input.GetButtonDown("Jump") && !isGrounded && onWall)
+        if (Input.GetButton("Jump") && !isGrounded && onWall)
         {
             WallJump();
         }
@@ -182,7 +202,7 @@ public class PlayerController : MonoBehaviour
             _isDashing = true;
             _canDash = false;
             trailRenderer.emitting = true;
-            _dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            _dashingDir = new Vector2(mouvement, vertical);
 
             if (_dashingDir == Vector2.zero)
             {
@@ -201,6 +221,14 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             _canDash = true;
+        }
+    }
+
+    private void jump()
+    {
+        if (isGrounded)
+        {
+            rb.AddForce(new Vector2(0, ))
         }
     }
 
@@ -281,15 +309,17 @@ public class PlayerController : MonoBehaviour
 
     private void Run()
     {
+        float mouvement = newPlayerScript.Land.move.ReadValue<float>();
+        
         if (!canMove)
             return;
         if (wallGrab)
             return;
         if (!wallJumped)
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(mouvement * moveSpeed, rb.velocity.y);
         else
             rb.velocity = Vector2.Lerp(rb.velocity,
-                    new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y), 1 * Time.deltaTime);
+                    new Vector2(mouvement * moveSpeed, rb.velocity.y), 1 * Time.deltaTime);
     }
 
     private void WallSlide()

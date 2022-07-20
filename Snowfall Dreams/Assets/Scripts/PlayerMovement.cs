@@ -4,6 +4,24 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    private NewPlayerScript newPlayerScript;
+
+    private void Awake()
+    {
+        newPlayerScript = new NewPlayerScript();
+    }
+
+    private void OnEnable()
+    {
+        newPlayerScript.Enable();
+    }
+
+    private void OnDisable()
+    {
+        newPlayerScript.Disable();
+    }
+
     public float moveSpeed;
     public float jumpForce;
 
@@ -28,8 +46,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        //Read mouv value
+        float mouvement = newPlayerScript.Land.move.ReadValue<float>();
         // Move as long as you press the button
-        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        horizontalMovement = mouvement * moveSpeed * Time.deltaTime;
 
         // Check if is on ground and pressed the jump button
         if (Input.GetButtonDown("Jump") && isGrounded)
